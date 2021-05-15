@@ -10,7 +10,7 @@ Tags: ad manager, ads, adsense, amp, banner
 Requires at least: 3.6+
 Tested up to: 5.7.1
 Requires PHP: 5.3
-Stable tag: 2.0.26
+Stable tag: 2.0.27
 
 Ads & AdSense Ad Plugin is the quickest way to insert Google AdSense & other ads into your website. Google AdSense integration with Google AMP support.
 
@@ -22,13 +22,12 @@ The legendary [WPQuads Ads](https://wpquads.com/)  plugin is back with the moder
 WPQuads is the most feature rich & Advanced Ad Inserter & Adsense solution built for WordPress.
 
 = Features: =
-* <strong>NEW AMP Story ADS</strong>: Advertise in AMP Web Stories
-* <strong>NEW Group Insertion ADS</strong>
-* <strong>NEW ADS rotator</strong>
-* <strong>NEW Infolinks suppor</strong>
-* <strong>NEW Reports & Tracking </strong>: Find out which of your ads are performing the best and find out the most performing ad location.
-* <strong>NEW Click Fraud Detection</strong>: Helps you fight the click fraud and helps you stabilize the ad revenue.
-* <strong>NEW GDPR & Privacy tools</strong>: We have got the GDPR and other privacy tools planned so that you dont have to worry about complying with privacy laws.
+* <strong>NEW - Web Stories Integration: </strong> Advertise in AMP Web Stories
+* <strong>NEW - Group Insertion</strong>
+* <strong>NEW - Ad rotator</strong>
+* <strong>NEW - Reports & Tracking </strong>: Find out which of your ads are performing the best and find out the most performing ad location.
+* <strong>NEW - Click Fraud Detection</strong>: Helps you fight the click fraud and helps you stabilize the ad revenue.
+* <strong>NEW - GDPR & Privacy tools</strong>: We have got the GDPR and other privacy tools planned so that you dont have to worry about complying with privacy laws.
 * <strong>Geo Targeting </strong>: Target the ads based on the city and countries.
 * <strong>Easy</strong> to use Modern options panel built on React JS.
 * Deeply <strong>integrates with AMP</strong> plugins like AMPforWP, Official AMP by Google.
@@ -71,7 +70,7 @@ WPQuads is the most feature rich & Advanced Ad Inserter & Adsense solution built
 * Media.net ads Support
 * MediaVine Ads support
 * Outbrain Ads support
-* infolinks Ads support
+* Infolinks Ads support
 * 20+ more ad vendors coming in the future updates.
 
 = Display Positions for Ads =
@@ -201,6 +200,11 @@ Alternative Installation:
 
 
 == Changelog ==
+= 2.0.27 (7th April 2021) =
+* Fix: Fixed Widget option is not working properly bug #342
+* Fix: Fixed 404 error on vi.html #351
+* Fix: Ads are not showing post category pages #331
+
 = 2.0.26 (29th April 2021) =
 * New: Ad impression and Ad clicks. #312
 * Fix: Fixed duplicate id issue #341
