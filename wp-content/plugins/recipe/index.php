@@ -24,6 +24,8 @@
  include( 'process/save-post.php' );
  include( 'process/filter-content.php' );
  include( 'process/rate-recipe.php' );
+ include( 'process/rate-recipe.php' );
+ include( 'blocks/enqueue.php' );
 
  // Hooks
  register_activation_hook( __FILE__, 'r_activate_plugin' );
@@ -34,5 +36,6 @@
  add_action( 'wp_ajax_r_rate_recipe', 'r_rate_recipe' );
  add_action( 'wp_ajax_nopriv_r_rate_recipe', 'r_rate_recipe' );
  add_action( 'admin_init', 'recipe_admin_init' );
+ add_action( 'enqueue_block_editor_assets', 'r_enqueue_block_editor_assets' );
 
  // Shortcodes
