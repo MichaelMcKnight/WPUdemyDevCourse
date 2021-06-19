@@ -1,0 +1,10 @@
+.wp-block-udemy-recipe{
+    font-family: 'Lato', sans-serif;
+}
+.wp-block-udemy-recipe ul.list-unstyled{
+    padding: 0;
+    list-style-type: none;
+}
+.wp-block-udemy-recipe strong{
+    color:firebrick;
+}

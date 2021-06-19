@@ -10,3 +10,16 @@ function r_enqueue_block_editor_assets(){
 
     wp_enqueue_script( 'r_blocks_bundle' );
 }
+
+function r_enqueue_block_assets() {
+    wp_register_style(
+        'r_blocks',
+        plugins_url( '/blocks/dist/blocks-main.css', RECIPE_PLUGIN_URL )
+    );
+    wp_register_style(
+        'lato-google-font',
+        'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap'
+    );
+    wp_enqueue_style( 'lato-google-font' );
+    wp_enqueue_style( 'r_blocks' );
+}
