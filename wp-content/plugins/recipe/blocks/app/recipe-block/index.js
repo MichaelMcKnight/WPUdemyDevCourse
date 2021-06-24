@@ -1,12 +1,16 @@
 // console.log( wp );
+import './editor.scss';
 
 const { registerBlockType }             =   wp.blocks;
 const { __ }                            =   wp.i18n;
 const { InspectorControls,
         BlockControls,
         AlignmentToolbar,
-        BlockAlignmentToolbar }             =   wp.blockEditor;
-const { PanelBody, PanelRow, TextControl, SelectControl }           =   wp.components;
+        BlockAlignmentToolbar }         =   wp.blockEditor;
+const { PanelBody, 
+        PanelRow, 
+        TextControl, 
+        SelectControl }                 =   wp.components;
 
 registerBlockType( 'udemy/recipe', {
     title:              __( 'Recipe', 'recipe' ),

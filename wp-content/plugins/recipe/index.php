@@ -21,6 +21,7 @@
  include( 'includes/init.php' );
  include( 'includes/front/enqueue.php' );
  include( 'includes/admin/init.php' );
+ include( 'includes/widgets.php' );
  include( 'process/save-post.php' );
  include( 'process/filter-content.php' );
  include( 'process/rate-recipe.php' );
@@ -38,5 +39,6 @@
  add_action( 'admin_init', 'recipe_admin_init' );
  add_action( 'enqueue_block_editor_assets', 'r_enqueue_block_editor_assets' );
  add_action( 'enqueue_block_assets', 'r_enqueue_block_assets' );
+ add_action( 'widgets_init', 'r_widgets_init' );
 
  // Shortcodes
