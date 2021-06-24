@@ -99,16 +99,19 @@ function quads_load_ads_common($user_position){
      }
 }
 function remove_ads_for_wp_shortcodes() {
-  $quads_settings = get_option( 'quads_settings' );
-  if(isset($quads_settings['adsforwp_quads_shortcode']) && $quads_settings['adsforwp_quads_shortcode']){
-      remove_shortcode( 'adsforwp' );
-      add_shortcode('adsforwp', 'quads_from_adsforwp_manual_ads',1);
+    $quads_settings = get_option( 'quads_settings' );
+    if(isset($quads_settings['adsforwp_quads_shortcode']) && $quads_settings['adsforwp_quads_shortcode']){
+        remove_shortcode( 'adsforwp' );
+        add_shortcode('adsforwp', 'quads_from_adsforwp_manual_ads',1);
+    }
+    if(isset($quads_settings['advance_ads_to_quads']) && $quads_settings['advance_ads_to_quads']){
+        remove_shortcode( 'the_ad_placement' );
+        remove_shortcode( 'the_ad' );
+        add_shortcode('the_ad_placement', 'quads_from_advance_manual_ads',1);
+        add_shortcode( 'the_ad', 'quads_from_advance_manual_ads',1);
+    
+    }
   }
-  if(isset($quads_settings['advance_ads_to_quads']) && $quads_settings['advance_ads_to_quads']){
-      remove_shortcode( 'the_ad_placement' );
-      add_shortcode('the_ad_placement', 'quads_from_advance_manual_ads',1);
-  }
-}
 
 //Ad blocker
 add_action('wp_head', 'quads_adblocker_detector');

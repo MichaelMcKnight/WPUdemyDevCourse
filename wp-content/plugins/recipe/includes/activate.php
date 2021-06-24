@@ -23,4 +23,6 @@ function r_activate_plugin(){
  
      require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
      dbDelta( $sql );
+
+     wp_schedule_event( time(), 'daily', 'r_daily_recipe_hook' );
 }
