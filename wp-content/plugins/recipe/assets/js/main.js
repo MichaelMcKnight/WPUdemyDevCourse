@@ -50,27 +50,58 @@
         $(this).hide();
 
         var form                        =   {
-            _wpnonce:                   =   $('#_wpnonce').val(),
-            action:                     =   'recipe_create_account',
-            name:                       =   $('#register-form-name').val(),
-            username:                   =   $('#register-form-username').val(),
-            email:                      =   $('#register-form-email').val(),
-            pass:                       =   $('#register-form-password').val(),
-            confirmpass:                =   $('#register-form-repassword').val()
+            _wpnonce:                       $('#_wpnonce').val(),
+            action:                         'recipe_create_account',
+            name:                           $('#register-form-name').val(),
+            username:                       $('#register-form-username').val(),
+            email:                          $('#register-form-email').val(),
+            pass:                           $('#register-form-password').val(),
+            confirm_pass:                   $('#register-form-repassword').val()
         }
+
+        $.post( recipe_obj.ajax_url, form ).always(function(data) {
+            if ( data.status == 2 ) {
+                $('#register-status').html(
+                    '<div class="alert alert-success">Account created!</div>'
+                );
+                location.href = recipe_obj.home_url;
+            } else {
+                $('#register-status').html(
+                    '<div class="alert alert-danger">Unable to create an account.</div>'
+                );
+                $('#register-form').show();
+            }
+        });
     });
 
-    $.post( recipe_obj.ajax_url, form ).always(function(data) {
-        if ( data.status == 2 ) {
-            $('#register-status').html(
-                '<div class="alert alert-success">Account created!</div>'
-            );
-            location.href = recipe_obj.home_url;
-        } else {
-            $('#register-status').html(
-                '<div class="alert alert-danger">Unable to create an account.</div>'
-            );
-            $('#register-form').show();
+    $(document).on('submit', '#login-form', function(e) {
+        e.preventDefault();
+
+        $('#login-status').html(
+            '<div class="alert alert-info">Please wait while we log you in.</div>'
+        );
+        $(this).hide();
+
+        var form                        =   {
+            _wpnonce:                       $('#_wpnonce').val(),
+            action:                         'recipe_user_login',
+            username:                       $('#login-form-username').val(),
+            pass:                           $('#login-form-password').val(),
         }
+
+        $.post( recipe_obj.ajax_url, form ).always(function(data) {
+            if ( data.status == 2 ) {
+                $('#login-status').html(
+                    '<div class="alert alert-success">Account created!</div>'
+                );
+                location.href = recipe_obj.home_url;
+            } else {
+                $('#login-status').html(
+                    '<div class="alert alert-danger">Unable to log in.</div>'
+                );
+                $('#login-form').show();
+            }
+        });
     });
+
 })(jQuery);

@@ -28,12 +28,14 @@
  include( 'includes/utility.php' );
  include( 'includes/shortcodes/creator.php' );
  include( 'includes/shortcodes/auth-form.php' );
+ include( 'includes/shortcodes/auth-form-alt.php' );
  include( 'process/save-post.php' );
  include( 'process/filter-content.php' );
  include( 'process/rate-recipe.php' );
  include( 'process/rate-recipe.php' );
  include( 'process/submit-user-recipe.php' );
  include( 'process/create-account.php' );
+ include( 'process/login.php' );
  include( 'blocks/enqueue.php' );
 
  // Hooks
@@ -53,7 +55,10 @@
  add_action( 'wp_ajax_r_submit_user_recipe', 'r_submit_user_recipe' );
  add_action( 'wp_ajax_nopriv_r_submit_user_recipe', 'r_submit_user_recipe' );
  add_action( 'wp_ajax_nopriv_recipe_create_account', 'recipe_create_account' );
+ add_action( 'wp_ajax_nopriv_recipe_user_login', 'recipe_user_login' );
+//  add_filter( 'authenticate', 'r_alt_authenticate', 100, 3 );
 
  // Shortcodes
  add_shortcode( 'recipe_creator', 'r_recipe_creator_shortcode' );
  add_shortcode( 'recipe_auth_form', 'r_recipe_auth_form_shortcode' );
+//  add_shortcode( 'recipe_alt_auth_form', 'r_recipe_alt_auth_form_shortcode' );
