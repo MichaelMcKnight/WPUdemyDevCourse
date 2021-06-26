@@ -5,6 +5,9 @@ function r_activate_plugin(){
         wp_die( __('You must update Wordpress to use this plugin.', 'recipe' ) );
     }
 
+    recipe_init();
+    flush_rewrite_rules();
+
     global $wpdb;
      $table_name = $wpdb->prefix . 'recipe_ratings';
      $wpdb_collate = $wpdb->collate;

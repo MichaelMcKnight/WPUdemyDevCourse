@@ -20,7 +20,9 @@
  include( 'includes/activate.php' );
  include( 'includes/init.php' );
  include( 'includes/front/enqueue.php' );
+ include( 'includes/front/logout-link.php' );
  include( 'includes/admin/init.php' );
+ include( 'includes/admin/dashboard-widgets.php' );
  include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets.php' );
  include( 'includes/widgets/daily-recipe.php' );
  include( 'includes/cron.php' );
@@ -29,6 +31,7 @@
  include( 'includes/shortcodes/creator.php' );
  include( 'includes/shortcodes/auth-form.php' );
  include( 'includes/shortcodes/auth-form-alt.php' );
+ include( 'includes/shortcodes/twitter-follow.php' ); 
  include( 'process/save-post.php' );
  include( 'process/filter-content.php' );
  include( 'process/rate-recipe.php' );
@@ -57,8 +60,11 @@
  add_action( 'wp_ajax_nopriv_recipe_create_account', 'recipe_create_account' );
  add_action( 'wp_ajax_nopriv_recipe_user_login', 'recipe_user_login' );
 //  add_filter( 'authenticate', 'r_alt_authenticate', 100, 3 );
+ add_filter( 'wp_nav_menu_secondary_items', 'ju_new_nav_menu_items', 999 );
+ add_action( 'wp_dashboard_setup', 'r_dashboard_widgets' );
 
  // Shortcodes
  add_shortcode( 'recipe_creator', 'r_recipe_creator_shortcode' );
  add_shortcode( 'recipe_auth_form', 'r_recipe_auth_form_shortcode' );
 //  add_shortcode( 'recipe_alt_auth_form', 'r_recipe_alt_auth_form_shortcode' );
+ add_shortcode( 'twitter_follow', 'r_twitter_follow_shortcode' );

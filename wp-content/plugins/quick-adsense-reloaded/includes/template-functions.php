@@ -25,7 +25,11 @@ add_action('amp_post_template_footer','quads_adsense_auto_ads_amp_tag');
 add_action( 'plugins_loaded', 'quads_plugins_loaded_bbpress', 20 );
 
 add_action( 'init', 'remove_ads_for_wp_shortcodes',999 );
-
+  add_action('wp', function(){ ob_start('quads_get_complete_html'); }, 999);
+  function quads_get_complete_html( $content_buffer ) {
+    $content_buffer = apply_filters('wp_quads_content_html_last_filter', $content_buffer);
+    return  $content_buffer;
+  }
 function quads_plugins_loaded_bbpress(){
   global $quads_mode;
       if($quads_mode != 'new' || !class_exists( 'bbPress' )){
@@ -35,6 +39,14 @@ function quads_plugins_loaded_bbpress(){
   add_action( 'bbp_template_before_replies_loop', 'quads_bbp_template_before_Ads' );
   add_action( 'bbp_theme_after_reply_content', 'quads_bbp_template_after_replies_loop' );
   add_action( 'bbp_theme_before_reply_content', 'quads_bbp_template_before_replies_loop' );
+}
+add_filter('wp_quads_content_html_last_filter','wpquads_content_modifier');
+function wpquads_content_modifier( $content_buffer ){
+    $data =    quads_load_ads_common('newspaper_theme',$content_buffer);
+  if(empty($data)){
+        return $content_buffer;
+    }
+  return $data;
 }
 function quads_bbp_template_after_Ads(){
   quads_load_ads_common('bbpress_after_ad');
@@ -51,7 +63,7 @@ function quads_bbp_template_before_replies_loop(){
   quads_load_ads_common('bbpress_before_reply');
 }
 
-function quads_load_ads_common($user_position){
+function quads_load_ads_common($user_position,$html=''){
         require_once QUADS_PLUGIN_DIR . '/admin/includes/rest-api-service.php';
     $api_service = new QUADS_Ad_Setup_Api_Service();
     $quads_ads = $api_service->getAdDataByParam('quads-ads');
@@ -93,6 +105,14 @@ function quads_load_ads_common($user_position){
                   $tag= '<!--CusAds'.esc_html($ads['ad_id']).'-->';
                   echo   quads_replace_ads_new( $tag, 'CusAds' . $ads['ad_id'], $ads['ad_id'] );
             }
+          }elseif( $ads['position'] == 'before_header' && $user_position == 'newspaper_theme'){
+            $tag= '<!--CusAds'.esc_html($ads['ad_id']).'-->';
+            $html = preg_replace('/<div\sclass=\"td-header-menu-wrap-full td-container-wrap(.*?)\">(.*?)<div class=\"td-main-content-wrap /s', '<div class="td-header-menu-wrap-full td-container-wrap $1 "> '.quads_replace_ads_new( $tag, 'CusAds' . $ads['ad_id'], $ads['ad_id'] ).'$2 <div class="td-main-content-wrap' , $html);
+            return $html;
+          }elseif( $ads['position'] == 'after_header' && $user_position == 'newspaper_theme'){
+            $tag= '<!--CusAds'.esc_html($ads['ad_id']).'-->';
+            $html = preg_replace('/<div\sclass=\"td-header-menu-wrap-full td-container-wrap(.*?)<div class=\"td-main-content-wrap/s', '<div class="td-header-menu-wrap-full td-container-wrap $1 '.quads_replace_ads_new( $tag, 'CusAds' . $ads['ad_id'], $ads['ad_id'] ).' <div class="td-main-content-wrap ' , $html);
+            return $html;
           }
         }  
        }
@@ -1900,10 +1920,10 @@ function quads_replace_ads_new($content, $quicktag, $id,$ampsupport='') {
             $code ='';
         }
                 $style = quads_get_inline_ad_style_new($id);
-	    // if it was sticky ad return empty
-	    if (isset($ad_meta['adsense_ad_type'][0]) && $ad_meta['adsense_ad_type'][0] == 'adsense_sticky_ads' ){
-		    return  $content;
-	    }
+      // if it was sticky ad return empty
+      if (isset($ad_meta['adsense_ad_type'][0]) && $ad_meta['adsense_ad_type'][0] == 'adsense_sticky_ads' ){
+        return  $content;
+      }
         if(function_exists('quads_hide_markup') && quads_hide_markup()  ) {
             $adscode =
                 "\n".'<div style="'.esc_attr($style).'">'."\n".

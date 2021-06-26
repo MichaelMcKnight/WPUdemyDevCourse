@@ -172,7 +172,7 @@ class quads_output_amp_condition_display{
 	             if($ads['position'] =='amp_after_featured_image' && $condition == 'quads_after_featured_image'){
               $tag= '<!--CusAds'.$ads['ad_id'].'-->'; 
               echo   quads_replace_ads_new( $tag, 'CusAds' . $ads['ad_id'], $ads['ad_id'] );
-          }else if($ads['position'] =='amp_below_the_header' && $condition == 'quads_below_the_header'){
+          }else if(($ads['position'] =='amp_below_the_header' || $ads['position'] == 'after_header') && $condition == 'quads_below_the_header'){
             $tag= '<!--CusAds'.$ads['ad_id'].'-->'; 
             echo   quads_replace_ads_new( $tag, 'CusAds' . $ads['ad_id'], $ads['ad_id'] );
           }else if($ads['position'] =='amp_below_the_footer' && $condition == 'quads_below_the_footer'){
