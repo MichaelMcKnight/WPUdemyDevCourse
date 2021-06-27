@@ -23,6 +23,8 @@
  include( 'includes/front/logout-link.php' );
  include( 'includes/admin/init.php' );
  include( 'includes/admin/dashboard-widgets.php' );
+ include( 'includes/admin/menus.php' );
+ include( 'includes/admin/options-page.php' );
  include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets.php' );
  include( 'includes/widgets/daily-recipe.php' );
  include( 'includes/cron.php' );
@@ -39,6 +41,7 @@
  include( 'process/submit-user-recipe.php' );
  include( 'process/create-account.php' );
  include( 'process/login.php' );
+ include( 'process/save-options.php' );
  include( 'blocks/enqueue.php' );
 
  // Hooks
@@ -62,6 +65,7 @@
 //  add_filter( 'authenticate', 'r_alt_authenticate', 100, 3 );
  add_filter( 'wp_nav_menu_secondary_items', 'ju_new_nav_menu_items', 999 );
  add_action( 'wp_dashboard_setup', 'r_dashboard_widgets' );
+ add_action( 'admin_menu', 'r_admin_menus' );
 
  // Shortcodes
  add_shortcode( 'recipe_creator', 'r_recipe_creator_shortcode' );
