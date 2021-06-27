@@ -29,6 +29,11 @@ function r_submit_user_recipe() {
         'rating'                    =>  $rating_count,
         'user_IP'                   =>  $user_IP
     ]);
+
+    if ( isset($_POST['attachment_id']) && !empty($_POST['attachment_id']) ) {
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        set_post_thumbnail( $post_id, absint($_POST['attachment_id']) );
+    }
     
     $output['status']              =   2;
     wp_send_json( $output );

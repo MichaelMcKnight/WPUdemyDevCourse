@@ -3,8 +3,10 @@
 function r_enqueue_scripts(){
     wp_register_style( 'r_rateit', plugins_url( '/assets/rateit/rateit.css', RECIPE_PLUGIN_URL ) );
     wp_register_style( 'r_auth', plugins_url( '/assets/css/auth.css', RECIPE_PLUGIN_URL ) );
+    
     wp_enqueue_style( 'r_rateit' );
     wp_enqueue_style( 'r_auth' );
+    wp_enqueue_media();
 
     wp_register_script(
         'r_rateit',

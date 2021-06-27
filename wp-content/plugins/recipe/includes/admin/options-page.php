@@ -9,8 +9,10 @@ function r_plugin_opts_page() {
                 <h3 class="card-title"><?php _e('Recipe Settings', 'recipe' ); ?></h3>
                 <?php 
 
-                if ( isset($_GET['status']) && $_GET['status'] == 1 )
+                if ( isset($_GET['status']) && $_GET['status'] == 1 ) {
                     ?><div class="alert alert-success">Options updated successfully!</div><?php
+                }
+
                 ?>
                 <form method="POST" action="admin-post.php">
                 <input type="hidden" name="action" value="r_save_options" />
@@ -37,6 +39,16 @@ function r_plugin_opts_page() {
                 </form>
             </div>
         </div>
+
+        <!-- <hr>
+
+        <form method="POST" action="options.php">
+        <?php 
+            settings_fields( 'r_opts_group' );
+            do_settings_sections( 'r_opts_sections' );
+            submit_button();
+        ?>
+        </form> -->
     </div>
     <?php
 }

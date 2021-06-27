@@ -9,6 +9,12 @@ if ( !function_exists( 'r_rate_recipe' ) ){
         global $wpdb;
     
         $output                 =   [ 'status' => 1 ];
+        $recipe_option          =   get_option( 'r_opts' );
+
+        if ( !is_user_logged_in() && $recipe_option['rating_login_required'] == 2 ) {
+            wp_send_json( $output );
+        }
+
         $post_ID                =   absint( $_POST['rid'] );
         $rating                 =   round( $_POST['rating'], 1 );
         $user_IP                =   $_SERVER['REMOTE_ADDR'];
